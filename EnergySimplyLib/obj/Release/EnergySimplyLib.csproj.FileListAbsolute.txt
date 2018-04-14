@@ -1,0 +1,9 @@
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\bin\Release\EnergySimplyLib.dll.config
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\bin\Release\EnergySimplyLib.dll
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\bin\Release\EnergySimplyLib.pdb
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\bin\Release\EntityFramework.dll
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\bin\Release\EntityFramework.SqlServer.dll
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\bin\Release\EntityFramework.xml
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\bin\Release\EntityFramework.SqlServer.xml
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\obj\Release\EnergySimplyLib.dll
+c:\users\alkes_000\documents\visual studio 2015\Projects\EnergySimply\EnergySimplyLib\obj\Release\EnergySimplyLib.pdb

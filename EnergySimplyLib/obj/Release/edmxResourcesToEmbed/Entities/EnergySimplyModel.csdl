@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_121539_alkeshpatelfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DB_121539_alkeshpatelfEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="DB_121539_alkeshpatelfModel.Customer" />
+    <EntitySet Name="EnergyPlans" EntityType="DB_121539_alkeshpatelfModel.EnergyPlan" />
+    <AssociationSet Name="FK_Customers_EnergyPlan" Association="DB_121539_alkeshpatelfModel.FK_Customers_EnergyPlan">
+      <End Role="EnergyPlan" EntitySet="EnergyPlans" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <EntitySet Name="EnergyFiles" EntityType="DB_121539_alkeshpatelfModel.EnergyFile" />
+    <EntitySet Name="EnergySavedFiles" EntityType="DB_121539_alkeshpatelfModel.EnergySavedFile" />
+  </EntityContainer>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnergyPlanId" Type="Int32" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EnergyPlan" Relationship="DB_121539_alkeshpatelfModel.FK_Customers_EnergyPlan" FromRole="Customer" ToRole="EnergyPlan" />
+  </EntityType>
+  <EntityType Name="EnergyPlan">
+    <Key>
+      <PropertyRef Name="EnergyPlanId" />
+    </Key>
+    <Property Name="EnergyPlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnergyPlanName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EnergyPlanFixedCost" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="EnergyPlanVarCost" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="DB_121539_alkeshpatelfModel.FK_Customers_EnergyPlan" FromRole="EnergyPlan" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_Customers_EnergyPlan">
+    <End Type="DB_121539_alkeshpatelfModel.EnergyPlan" Role="EnergyPlan" Multiplicity="0..1" />
+    <End Type="DB_121539_alkeshpatelfModel.Customer" Role="Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EnergyPlan">
+        <PropertyRef Name="EnergyPlanId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="EnergyPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EnergyFile">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FileData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="EnergySavedFile">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

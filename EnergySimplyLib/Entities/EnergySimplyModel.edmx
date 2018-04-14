@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_121539_alkeshpatelfModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnergyPlanId" Type="int" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnergyFile">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FileData" Type="varbinary(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnergyPlan">
+          <Key>
+            <PropertyRef Name="EnergyPlanId" />
+          </Key>
+          <Property Name="EnergyPlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnergyPlanName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EnergyPlanFixedCost" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="EnergyPlanVarCost" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnergySavedFiles">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Customers_EnergyPlan">
+          <End Role="EnergyPlan" Type="Self.EnergyPlan" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergyPlan">
+              <PropertyRef Name="EnergyPlanId" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="EnergyPlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_121539_alkeshpatelfModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergyFile" EntityType="Self.EnergyFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergyPlan" EntityType="Self.EnergyPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergySavedFiles" EntityType="Self.EnergySavedFiles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Customers_EnergyPlan" Association="Self.FK_Customers_EnergyPlan">
+            <End Role="EnergyPlan" EntitySet="EnergyPlan" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_121539_alkeshpatelfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DB_121539_alkeshpatelfEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="DB_121539_alkeshpatelfModel.Customer" />
+          <EntitySet Name="EnergyPlans" EntityType="DB_121539_alkeshpatelfModel.EnergyPlan" />
+          <AssociationSet Name="FK_Customers_EnergyPlan" Association="DB_121539_alkeshpatelfModel.FK_Customers_EnergyPlan">
+            <End Role="EnergyPlan" EntitySet="EnergyPlans" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <EntitySet Name="EnergyFiles" EntityType="DB_121539_alkeshpatelfModel.EnergyFile" />
+          <EntitySet Name="EnergySavedFiles" EntityType="DB_121539_alkeshpatelfModel.EnergySavedFile" />
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnergyPlanId" Type="Int32" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EnergyPlan" Relationship="DB_121539_alkeshpatelfModel.FK_Customers_EnergyPlan" FromRole="Customer" ToRole="EnergyPlan" />
+        </EntityType>
+        <EntityType Name="EnergyPlan">
+          <Key>
+            <PropertyRef Name="EnergyPlanId" />
+          </Key>
+          <Property Name="EnergyPlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnergyPlanName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EnergyPlanFixedCost" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="EnergyPlanVarCost" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="DB_121539_alkeshpatelfModel.FK_Customers_EnergyPlan" FromRole="EnergyPlan" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_Customers_EnergyPlan">
+          <End Type="DB_121539_alkeshpatelfModel.EnergyPlan" Role="EnergyPlan" Multiplicity="0..1" />
+          <End Type="DB_121539_alkeshpatelfModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergyPlan">
+              <PropertyRef Name="EnergyPlanId" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="EnergyPlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EnergyFile">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FileData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EnergySavedFile">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_121539_alkeshpatelfModelStoreContainer" CdmEntityContainer="DB_121539_alkeshpatelfEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="DB_121539_alkeshpatelfModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="EnergyPlanId" ColumnName="EnergyPlanId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergyPlans">
+            <EntityTypeMapping TypeName="DB_121539_alkeshpatelfModel.EnergyPlan">
+              <MappingFragment StoreEntitySet="EnergyPlan">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EnergyPlanVarCost" ColumnName="EnergyPlanVarCost" />
+                <ScalarProperty Name="EnergyPlanFixedCost" ColumnName="EnergyPlanFixedCost" />
+                <ScalarProperty Name="EnergyPlanName" ColumnName="EnergyPlanName" />
+                <ScalarProperty Name="EnergyPlanId" ColumnName="EnergyPlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergyFiles">
+            <EntityTypeMapping TypeName="DB_121539_alkeshpatelfModel.EnergyFile">
+              <MappingFragment StoreEntitySet="EnergyFile">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FileData" ColumnName="FileData" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergySavedFiles">
+            <EntityTypeMapping TypeName="DB_121539_alkeshpatelfModel.EnergySavedFile">
+              <MappingFragment StoreEntitySet="EnergySavedFiles">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

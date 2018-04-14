@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_121539_alkeshpatelfModelStoreContainer" CdmEntityContainer="DB_121539_alkeshpatelfEntities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="DB_121539_alkeshpatelfModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="EnergyPlanId" ColumnName="EnergyPlanId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnergyPlans">
+      <EntityTypeMapping TypeName="DB_121539_alkeshpatelfModel.EnergyPlan">
+        <MappingFragment StoreEntitySet="EnergyPlan">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EnergyPlanVarCost" ColumnName="EnergyPlanVarCost" />
+          <ScalarProperty Name="EnergyPlanFixedCost" ColumnName="EnergyPlanFixedCost" />
+          <ScalarProperty Name="EnergyPlanName" ColumnName="EnergyPlanName" />
+          <ScalarProperty Name="EnergyPlanId" ColumnName="EnergyPlanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnergyFiles">
+      <EntityTypeMapping TypeName="DB_121539_alkeshpatelfModel.EnergyFile">
+        <MappingFragment StoreEntitySet="EnergyFile">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="FileData" ColumnName="FileData" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnergySavedFiles">
+      <EntityTypeMapping TypeName="DB_121539_alkeshpatelfModel.EnergySavedFile">
+        <MappingFragment StoreEntitySet="EnergySavedFiles">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
